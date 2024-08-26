@@ -1,4 +1,4 @@
-{% comment %} {% extends 'core/base.html' %}
+{% extends 'core/base.html' %}
 {% block title %}Login{% endblock title %}
 {% block content %} {% if form.non_field_errors %} {% for error in form.non_field_errors %}
 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2" role="alert">
@@ -12,7 +12,8 @@
         <h1 class="font-bold text-3xl text-center pb-5 shadow-md">Login</h1>
         <div class="w-full mt-10">
             <form method="post" class="shadow-md border border-gray-200 rounded px-8 pt-6 pb-8 mb-4">
-                {% csrf_token %} {% for hidden_field in form.hidden_fields %} {{ hidden_field.errors }} {{ hidden_field }} {% endfor %} 
+                {% csrf_token %}
+                {% for hidden_field in form.hidden_fields %} {{ hidden_field.errors }} {{ hidden_field }} {% endfor %} 
                 {% for field in form.visible_fields %}
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ field.id_for_label }}">
@@ -33,9 +34,4 @@
         </div>
     </div>
 </div>
-{% endblock %} {% endcomment %}
-<form method="post">
-    {% csrf_token %}
-    {{form}}
-    <button type="button">Login</button>
-</form>
+{% endblock %}
