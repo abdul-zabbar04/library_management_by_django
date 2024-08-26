@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% block title %}Review{% endblock title %}
+{% block content %} {% if form.non_field_errors %} {% for error in form.non_field_errors %}
+<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2" role="alert">
+    <p class="font-bold">Error!</p>
+    <p class="block sm:inline">{{ error }}</p>
+</div>
+{% endfor %} {% endif %}
+<div class="grid grid-cols-1 mx-5">
+    <div></div>
+    <div class="py-2 px-3 rounded-xl bg-white mt-12">
+        <h1 class="font-bold text-3xl text-center pb-5 shadow-md">Give your Review</h1>
+        <div class="w-full mt-10">
+            <form method="post" class="shadow-md border border-gray-200 rounded px-8 pt-6 pb-8 mb-4">
+                {% csrf_token %} {% for hidden_field in form.hidden_fields %} {{ hidden_field.errors }} {{ hidden_field }} {% endfor %} 
+                {{form}}
+                <div class="flex items-center justify-center w-full mt-5">
+                    <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                Add Review
+            </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="flex">
+    <div class="w-1/5">
+        <div class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 m-2 text-center hover:bg-blue-500 hover:text-white hover:border-transparent">
+            <a href="{% url 'homePage' %}">
+                All
+            </a><br>
+        </div>  
+        {% for cat in categories %}
+            <div class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 m-2 text-center hover:bg-blue-500 hover:text-white hover:border-transparent">
+                <a href="{% url 'CateWisePage' cat.slug %}">
+                    {{cat.name}}
+                </a><br>
+            </div>            
+        {% endfor %}
+    </div>
+    <div class="w-4/5 flex flex-wrap justify-center">
+        {% for book in books %}
+        <div style="box-shadow: 4px 4px 8px gray" class= 'p-3 m-3 text-center'>
+            <img src="{{book.image.url}}" alt="" width= "250px" height='250px'>
+            <h6 class='mt-2'>{{book.title| truncatewords:4}}</h6>
+            <h6><div class=" mt-1 disabled">Price: {{book.price}} BDT</div></h6>
+            <h6>
+                <div class="mb-3">{{book.category}}
+            </h6>
+            <a href="{% url 'detailPage' book.pk book.slug %}" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">View Details</a>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

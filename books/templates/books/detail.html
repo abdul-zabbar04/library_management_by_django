@@ -1,0 +1,36 @@
+{% extends "core/base.html" %}
+{% block title %}
+  Detial
+{% endblock title %}
+{% block content %}
+<div class="col-12">
+    <div class="card">
+      <div class="card-body text-center">
+        <img src="{{object.image.url}}" style="width: 75%;" class="m-auto border rounded"/>
+        <h5 class="text-center text-2xl">{{object.title}}</h5>
+        <p class="">{{object.description}}</p>
+        <h5 class="">Price: {{object.price}} BDT</h5>
+        <h5 class="mb-5">Category: {{object.category}}</h5>
+        {% if user.is_authenticated %}
+        <a href="{% url 'borrowPage' object.id %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Borrow
+        </a>
+          
+        {% endif %}
+      </div>
+    </div>
+</div>
+<h1 class="text-center text-3xl mt-5 font-bold">All Reviews</h1>
+<div class="m-2">
+  <h5 class='p-3'>Total Reviews: {{comments | length }}</h5>
+  <div class="">
+    {% for comment in comments %}
+      <div class="border p-3">
+        <h4>{{comment.name}}</h4><small>{{comment.create_on}}</small>
+        <p class="">
+          {{comment.body}}<br>
+        </p>
+      </div>
+      <br>
+    {% endfor %}
+{% endblock content %}

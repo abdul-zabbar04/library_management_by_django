@@ -1,0 +1,33 @@
+{% extends "core/base.html" %}
+{% block title %}
+  Profile
+{% endblock title %}
+{% block content %}
+<div class="bg-gray-500 shadow-lg m-auto w-1/2 p-5 text-2xl">
+    <h3>User Name: {{request.user.username}}</h3>
+    <h3>First Name: {{request.user.first_name}}</h3>
+    <h3>Last Name: {{request.user.last_name}}</h3>
+    <h3>Email: {{request.user.email}}</h3>
+</div>
+<div class="w-4/5 flex flex-wrap justify-center text-center">
+  {% for book in data %}
+  <div style="box-shadow: 4px 4px 8px gray" class= 'p-3 m-3'>
+      <img src="{{book.image.url}}" alt="" width= "250px" height='250px'>
+      <h6 class='mt-2'>{{book.title| truncatewords:4}}</h6>
+      <h6><div class=" mt-1 disabled">Borrowing Price: {{book.price}} BDT</div></h6>
+      <h6>
+          <div class="mb-3">{{book.category}}
+      </h6>
+      <h6>
+          <div class="mb-3">{{book.time_stamp}}
+      </h6>
+      <a href="{% url 'detailPage' book.pk book.slug %}" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 m-1">View Details</a>
+      <a href="{% url 'returnPage' book.id %}" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 m-1">Return</a>
+      <a href="{% url 'commentPage' book.id %}" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 m-1">Add Review</a>
+      
+
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}
