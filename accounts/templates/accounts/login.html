@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+{% comment %} {% extends 'core/base.html' %}
 {% block title %}Login{% endblock title %}
 {% block content %} {% if form.non_field_errors %} {% for error in form.non_field_errors %}
 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2" role="alert">
@@ -33,4 +33,8 @@
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock %} {% endcomment %}
+<form method="post">
+    {{form}}
+    <button type="button">Login</button>
+</form>
