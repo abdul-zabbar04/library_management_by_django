@@ -6,7 +6,7 @@ from category.models import CategoryModel
 class BookModel(models.Model):
     title= models.CharField(max_length=150)
     slug= models.SlugField(unique=True, max_length=150, null=True, blank=True)
-    image= models.ImageField(upload_to='books/media/upload', null=True, blank=True)
+    image= models.ImageField(upload_to='books/', null=True, blank=True)
     description= models.TextField()
     price= models.DecimalField(max_digits=7, decimal_places=2)
     time_stamp= models.DateTimeField(auto_now_add=True)
